@@ -1,8 +1,18 @@
 package com.example.lab3task1
 
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.lab3task1.ui.theme.Lab3Task1Theme
 
 
@@ -14,13 +24,71 @@ data class Student(
     val city: String
 )
 
-
 @Composable
 fun StudentCard(
     student: Student,
     modifier: Modifier = Modifier
 ) {
-    // TODO: Task 2 fills this in
+
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = student.name,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
+                    Text(
+                        text = student.program,
+                        fontSize = 11.sp,
+                        color = Color.Gray
+                    )
+                }
+
+
+                Text(
+                    text = student.gpa,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+            }
+
+
+            HorizontalDivider(
+                thickness = 1.dp,
+                color = Color.LightGray
+            )
+
+            Text(
+                text = student.email,
+                fontSize = 11.sp,
+                color = Color.Gray
+            )
+            Text(
+                text = student.city,
+                fontSize = 11.sp,
+                color = Color.Gray
+            )
+        }
+    }
 }
 
 
@@ -28,14 +96,16 @@ fun StudentCard(
 @Composable
 private fun StudentCardPreview() {
     Lab3Task1Theme {
-        StudentCard(
-            student = Student(
-                name = "Buthainah Fareed",
-                program = "Computer Science",
-                gpa = "4.5",
-                email = "student@iau.edu.sa",
-                city = "Jubail"
+        Box(modifier = Modifier.padding(16.dp)) {
+            StudentCard(
+                student = Student(
+                    name = "Ahmed Al-Qahtani",
+                    program = "Computer Science - Level 4",
+                    gpa = "4.62",
+                    email = "2200001234@iau.edu.sa",
+                    city = "Jubail, Eastern Province"
+                )
             )
-        )
+        }
     }
 }
